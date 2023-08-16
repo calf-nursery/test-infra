@@ -1,0 +1,10 @@
+plugins:
+  calf-nursery/test-infra:
+    plugins:
+    - config-update
+
+config_updater:
+  maps:
+    jobs/**/*.{yaml,yml}:
+      name: job-config
+      gzip: true
