@@ -1,7 +1,7 @@
 plugins:
   calf-nursery/test-infra:
     plugins:
-    - config-update
+    - config-updater
 
 config_updater:
   maps:
