@@ -1,4 +1,20 @@
 plugins:
+  calf-nursery:
+    plugins:
+    - approve
+    - assign
+    - blunderbuss
+    - cat
+    - dog
+    - help
+    - heart
+    - hold
+    - label
+    - lgtm
+    - trigger
+    - verify-owners
+    - wip
+    - yuks
   calf-nursery/test-infra:
     plugins:
     - config-updater
