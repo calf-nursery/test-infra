@@ -1,9 +1,0 @@
-decorate_all_jobs: true
-periodics:
-- interval: 10m
-  agent: kubernetes
-  name: echo-test
-  spec:
-    containers:
-    - image: alpine
-      command: ["/bin/date"]
