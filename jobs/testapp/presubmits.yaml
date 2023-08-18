@@ -1,6 +1,6 @@
 presubmits:
   calf-nursery/testapp:
-  - name: pull-testapp-build2
+  - name: pr-testapp-build2
     always_run: true
     optional: false
     decorate: true
