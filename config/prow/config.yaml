@@ -2,9 +2,9 @@ prowjob_namespace: prow
 pod_namespace: test-pods
 log_level: debug
 
-in_repo_config:
-  enabled:
-    "*": true
+# in_repo_config:
+#   enabled:
+#     "*": true
 
 deck:
   spyglass:

@@ -28,6 +28,12 @@ external_plugins:
 
 config_updater:
   maps:
+    config/prow/config.yaml:
+      name: config
+    config/prow/plugins.yaml:
+      name: plugins
+    config/prow/labels.yaml:
+      name: label-config
     jobs/**/*.{yaml,yml}:
       name: job-config
       gzip: true
