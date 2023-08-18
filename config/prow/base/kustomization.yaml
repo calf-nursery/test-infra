@@ -12,3 +12,5 @@ resources:
 - statusreconciler.yaml
 - test-pods-ns.yaml
 - tide.yaml
+- ingress.yaml
+- pdb.yaml

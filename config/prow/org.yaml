@@ -1,0 +1,58 @@
+orgs:
+  calf-nursery:
+    name: calf-nursery
+    description: Calf-nursery is a playground for various things.
+
+    default_repository_permission: read
+    has_organization_projects: true
+    has_repository_projects: true
+    members_can_create_repositories: false
+
+    admins:
+    - furkatgofurov7
+    - richardcase
+
+    members:
+    - salasberryfin
+    - Danil-Grigorev
+
+    repos:
+      test-infra:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Calf-nursery workflow & testing infrastructure
+        has_projects: true
+        has_wiki: false
+        homepage: https://prow.calf-nursery.com
+      testapp:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: CA sample project
+        has_projects: true
+        has_wiki: true
+    
+    teams:
+      admins:
+        description: admins of the org
+        default_branch: main
+        maintainers:
+          - furkatgofurov7
+          - richardcase
+        privacy: closed
+        repos:
+           test-infra: admin
+      team1:
+        description: a sample engineering team
+        default_branch: main
+        maintainers:
+          - furkatgofurov7
+          - richardcase
+        members:
+          - salasberryfin
+          - Danil-Grigorev
+        privacy: closed
+        repos:
+          testapp: admin
+
