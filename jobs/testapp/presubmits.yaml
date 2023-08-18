@@ -16,9 +16,9 @@ presubmits:
         command:
         - "runner.sh"
         - ./scripts/ci-verify.sh
-        resources:
-          requests:
-            cpu: 7300m
+        # resources:
+        #   requests:
+        #     cpu: 7300m
         securityContext:
           privileged: true
     annotations:
