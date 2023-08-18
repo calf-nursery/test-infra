@@ -10,9 +10,29 @@ presubmits:
     - ^main$
     spec:
       containers:
-      - image: golang:1.20.7
-        command:
-        - go build .
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230727-ea685f8747-1.27
+        args:
+        - runner.sh
+        - make build
     annotations:
       testgrid-dashboards: team1
       testgrid-tab-name: testapp-pr-build-main
+  - name: pr-testapp-build3
+    always_run: true
+    optional: false
+    decorate: true
+    path_alias: github.com/calf-nursery/testapp
+    branches:
+    # The script this job runs is not in all branches.
+    - ^main$
+    spec:
+      containers:
+      - image: public.ecr.aws/docker/library/golang:1.20.7
+        command:
+          - make
+        args:
+        - build
+        - vet
+    annotations:
+      testgrid-dashboards: team1
+      testgrid-tab-name: testapp-pr-build2-main
