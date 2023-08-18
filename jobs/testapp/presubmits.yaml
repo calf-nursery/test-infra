@@ -1,23 +1,30 @@
 presubmits:
   calf-nursery/testapp:
-  - name: pr-testapp-build2
-    always_run: true
-    optional: false
+  - name: pull-testapp-verify-main
     decorate: true
+ # Use workload identity for uploading artifacts
     path_alias: github.com/calf-nursery/testapp
+    always_run: true
+    labels:
+      preset-dind-enabled: "true"
     branches:
     # The script this job runs is not in all branches.
     - ^main$
     spec:
       containers:
       - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230727-ea685f8747-1.27
-        args:
-        - runner.sh
-        - make build
+        command:
+        - "runner.sh"
+        - ./scripts/ci-verify.sh
+        resources:
+          requests:
+            cpu: 7300m
+        securityContext:
+          privileged: true
     annotations:
       testgrid-dashboards: team1
-      testgrid-tab-name: testapp-pr-build-main
-  - name: pr-testapp-build3
+      testgrid-tab-name: testapp-pr-verify-main
+  - name: pull-testapp-build
     always_run: true
     optional: false
     decorate: true
@@ -35,4 +42,4 @@ presubmits:
         - vet
     annotations:
       testgrid-dashboards: team1
-      testgrid-tab-name: testapp-pr-build2-main
+      testgrid-tab-name: testapp-pr-build-main
