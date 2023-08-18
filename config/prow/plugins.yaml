@@ -19,6 +19,13 @@ plugins:
     plugins:
     - config-updater
 
+external_plugins:
+  calf-nursey:
+  - name: needs-rebase
+    events:
+      - issue_comment
+      - pull_request
+
 config_updater:
   maps:
     jobs/**/*.{yaml,yml}:
