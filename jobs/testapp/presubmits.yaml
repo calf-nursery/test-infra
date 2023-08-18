@@ -1,0 +1,17 @@
+presubmits:
+  calf-nursery/testapp:
+  - name: pull-testapp-build2
+    always_run: true
+    optional: false
+    decorate: true
+    branches:
+    # The script this job runs is not in all branches.
+    - ^main$
+    spec:
+      containers:
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230727-ea685f8747-1.27
+        command:
+        - make build
+    annotations:
+      testgrid-dashboards: team1
+      testgrid-tab-name: testapp-pr-build-main
