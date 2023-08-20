@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - base
+- external-plugins/cherrypicker_deployment.yaml
+- external-plugins/cherrypicker_service.yaml
 
 # For some of the configmaps and secrets we could use suffix hash,
 # but some will be used directly by prow, which cannot know about
