@@ -29,6 +29,11 @@ approve:
   # A /lgtm from a single approver should not allow a PR to merge.
   lgtm_acts_as_approve: false
 
+lgtm:
+- repos:
+  - calf-nursery/testapp
+  store_tree_hash: true
+
 external_plugins:
   calf-nursey:
   - name: needs-rebase
