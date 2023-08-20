@@ -4,12 +4,13 @@ presubmits:
     decorate: true
  # Use workload identity for uploading artifacts
     path_alias: github.com/calf-nursery/testapp
-    always_run: true
+    always_run: false
     labels:
       preset-dind-enabled: "true"
     branches:
     # The script this job runs is not in all branches.
     - ^main$
+    run_if_changed: '^((scripts)/|main\.go|go\.mod|Makefile)'
     spec:
       containers:
       - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230727-ea685f8747-1.27
@@ -25,13 +26,14 @@ presubmits:
       testgrid-dashboards: team1
       testgrid-tab-name: testapp-pr-verify-main
   - name: pull-testapp-build
-    always_run: true
+    always_run: false
     optional: false
     decorate: true
     path_alias: github.com/calf-nursery/testapp
     branches:
     # The script this job runs is not in all branches.
     - ^main$
+    run_if_changed: '^((scripts)/|main\.go|go\.mod|Makefile)'
     spec:
       containers:
       - image: public.ecr.aws/docker/library/golang:1.20.7
