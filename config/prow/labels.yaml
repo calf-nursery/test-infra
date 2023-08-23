@@ -151,6 +151,54 @@ default:
       target: both
       prowPlugin: label
       addedBy: anyone
+    - color: 0052cc
+      description: Issues or PRs related to the APIs
+      name: area/api
+      target: both
+      prowPlugin: label
+      addedBy: anyone
+    - color: 0052cc
+      description: Issues or PRs related to UX
+      name: area/ux
+      target: both
+      prowPlugin: label
+      addedBy: anyone
+    - color: 0052cc
+      description: Issues or PRs related to releasing
+      name: area/release
+      target: both
+      prowPlugin: label
+      addedBy: anyone
+    - color: 0052cc
+      description: Issues or PRs related to testing
+      name: area/testing
+      target: both
+      prowPlugin: label
+      addedBy: anyone
+    - color: 0052cc
+      description: Issues or PRs related to upgrades
+      name: area/upgrades
+      target: both
+      prowPlugin: label
+      addedBy: anyone
+    - color: 0052cc
+      description: Issues or PRs related to the hosting of release artifacts
+      name: area/artifacts
+      target: both
+      prowPlugin: label
+      addedBy: anyone
+    - color: 0052cc
+      description: Issues or PRs related to security
+      name: area/security
+      target: both
+      addedBy: anyone
+      prowPlugin: label
+    - color: 0052cc
+      description: Issues or PRs related to ci
+      name: area/ci
+      target: both
+      prowPlugin: label
+      addedBy: anyone
     - color: 15dd18
       description: Indicates that a PR is ready to be merged.
       name: lgtm
