@@ -17,6 +17,7 @@ plugins:
     - wip
     - yuks
     - require-matching-label
+    - release-note
   calf-nursery/test-infra:
     plugins:
     - config-updater
