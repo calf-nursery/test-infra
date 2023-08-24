@@ -15,8 +15,8 @@ more information about how to run each prow command.
 
 ## Prow commands
 
-There are some plugins supported by prow and makes the life of the developer
-easier in certain cases:
+There are some plugins supported by Prow that make the life of the developer
+easier in some instances:
 
 1. `cherry-pick` plugin can be used for cherrypicking PRs across branches by
    commenting:
