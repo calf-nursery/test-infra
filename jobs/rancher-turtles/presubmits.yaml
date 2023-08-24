@@ -1,0 +1,40 @@
+presubmits:
+  calf-nursery/rancher-turtles:
+  - name: pull-rancher-turtles-verify-main
+    decorate: true
+ # Use workload identity for uploading artifacts
+    path_alias: github.com/calf-nursery/rancher-turtles
+    always_run: true
+    labels:
+      preset-dind-enabled: "true"
+    branches:
+    # The script this job runs is not in all branches.
+    - ^main$
+    spec:
+      containers:
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230727-ea685f8747-1.27
+        command:
+          - make
+        args:
+        - verify
+    annotations:
+      testgrid-dashboards: rancher-sandbox-rancher-turtles
+      testgrid-tab-name: rancher-turtles-pr-verify-main
+  - name: pull-rancher-turtles-build
+    always_run: true
+    optional: false
+    decorate: true
+    path_alias: github.com/calf-nursery/rancher-turtles
+    branches:
+    # The script this job runs is not in all branches.
+    - ^main$
+    spec:
+      containers:
+      - image: public.ecr.aws/docker/library/golang:1.20.7
+        command:
+          - make
+        args:
+        - build
+    annotations:
+      testgrid-dashboards: rancher-sandbox-rancher-turtles
+      testgrid-tab-name: rancher-turtles-pr-build-main
