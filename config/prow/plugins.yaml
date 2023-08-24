@@ -50,7 +50,7 @@ require_matching_label:
       The `triage/accepted` label can be added by org members by writing `/triage accepted` in a comment.
 
 external_plugins:
-  calf-nursey:
+  calf-nursery:
   - name: needs-rebase
     events:
       - issue_comment
