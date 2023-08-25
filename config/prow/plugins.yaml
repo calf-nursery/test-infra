@@ -18,6 +18,7 @@ plugins:
     - yuks
     - require-matching-label
     - release-note
+    - override
   calf-nursery/test-infra:
     plugins:
     - config-updater
@@ -36,6 +37,9 @@ lgtm:
 - repos:
   - calf-nursery/testapp
   store_tree_hash: true
+
+override:
+  allow_top_level_owners: true
 
 require_matching_label:
   # triage configuration
