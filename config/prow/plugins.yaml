@@ -54,6 +54,7 @@ require_matching_label:
       The `triage/accepted` label can be added by org members by writing `/triage accepted` in a comment.
 
 external_plugins:
+  calf-nursery:
   - name: cherrypicker
     events:
     - issue_comment
@@ -62,8 +63,8 @@ external_plugins:
   calf-nursery/testapp:
   - name: needs-rebase
     events:
-      - issue_comment
-      - pull_request
+    - issue_comment
+    - pull_request
 
 config_updater:
   maps:
