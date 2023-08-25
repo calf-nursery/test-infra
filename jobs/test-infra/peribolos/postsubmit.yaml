@@ -1,6 +1,6 @@
-presubmits:
+postsubmits:
   calf-nursery/test-infra:
-    - name: peribolos-pre-submit
+    - name: peribolos-post-submit
       branches:
         - ^main$
       decorate: true
@@ -24,6 +24,7 @@ presubmits:
               - --fix-team-repos
               - --min-admins=2
               - --maximum-removal-delta=0.25
+              - --confirm
             env:
             - name: GITHUB_APP_ID
               valueFrom:
