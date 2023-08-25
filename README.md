@@ -10,7 +10,7 @@ calf-nursery Prow dashboard: https://prow.calf-nursery.com
   repository where prow is running. See the [OWNERS spec](https://go.k8s.io/owners) for more details
   about how to manage access to all or part of a repo with this file.
 
-See the [Prow command help](https://prow.calf-nursery.com/command-help) for
+See [Prow command help](https://prow.calf-nursery.com/command-help) for
 more information about how to run each prow command.
 
 ## Prow commands
