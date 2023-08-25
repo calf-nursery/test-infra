@@ -59,7 +59,7 @@ spec:
           secretName: hmac-token
       - name: github-token
         secret:
-          secretName: github-token
+          secretName: github-oauth-bot
       - name: plugins
         configMap:
           name: plugins
