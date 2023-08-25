@@ -44,7 +44,7 @@ orgs:
         repos:
            test-infra: admin
       team1:
-        description: a sample engineering team
+        description: A sample engineering team
         default_branch: main
         maintainers:
           - furkatgofurov7
