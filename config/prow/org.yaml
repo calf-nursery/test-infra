@@ -1,7 +1,7 @@
 orgs:
   calf-nursery:
     name: calf-nursery
-    description: Calf-nursery is a playground for various things.
+    description: calf-nursery is a playground for various things.
 
     default_repository_permission: read
     has_organization_projects: true
