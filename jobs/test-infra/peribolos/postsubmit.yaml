@@ -14,8 +14,7 @@ postsubmits:
               - peribolos
             args:
               - --config-path=config/prow/org.yaml
-              - -github-app-id=$(GITHUB_APP_ID)
-              - -github-app-private-key-path=/etc/github/cert
+              - --github-token-path=/etc/github/token
               - --fix-org
               - --fix-org-members
               - --fix-repos
@@ -25,12 +24,6 @@ postsubmits:
               - --min-admins=2
               - --maximum-removal-delta=0.25
               - --confirm
-            env:
-            - name: GITHUB_APP_ID
-              valueFrom:
-                secretKeyRef:
-                  name: github-token
-                  key: appid
             volumeMounts:
             - name: github-token
               mountPath: /etc/github
@@ -38,4 +31,4 @@ postsubmits:
         volumes:
         - name: github-token
           secret:
-            secretName: github-token
+            secretName: github-oauth-bot
