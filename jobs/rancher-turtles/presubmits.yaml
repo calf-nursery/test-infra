@@ -43,8 +43,6 @@ presubmits:
       preset-dind-enabled: "true"
       preset-kind-volume-mounts: "true"
     decorate: true
-    decoration_config:
-      gcs_credentials_secret: "" # Use workload identity for uploading artifacts
     optional: false
     always_run: true
     branches:
@@ -78,10 +76,10 @@ presubmits:
             secretKeyRef:
               name: ngrok-config
               key: RANCHER_HOSTNAME
-        resources:
-          requests:
-            cpu: "4"
-            memory: "8Gi"
+        # resources:
+        #   requests:
+        #     cpu: "4"
+        #     memory: "8Gi"
     annotations:
       testgrid-dashboards: rancher-sandbox-rancher-turtles
       testgrid-tab-name: rancher-turtles-pr-run-e2e
