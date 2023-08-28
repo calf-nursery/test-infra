@@ -38,3 +38,50 @@ presubmits:
     annotations:
       testgrid-dashboards: rancher-sandbox-rancher-turtles
       testgrid-tab-name: rancher-turtles-pr-build-main
+  - name: pull-rancher-turtles-run-e2e
+    labels:
+      preset-dind-enabled: "true"
+      preset-kind-volume-mounts: "true"
+    decorate: true
+    decoration_config:
+      gcs_credentials_secret: "" # Use workload identity for uploading artifacts
+    optional: false
+    always_run: true
+    branches:
+    # The script this job runs is not in all branches.
+    - ^main$
+    path_alias: github.com/calf-nursery/rancher-turtles
+    spec:
+      containers:
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230727-ea685f8747-1.27
+        args:
+          - runner.sh
+          - "bash"
+          - "-c"
+          - "export VERIFY_CHECKSUM=false && make test-e2e"
+        # we need privileged mode in order to do docker in docker
+        securityContext:
+          privileged: true
+        env:
+        - name: NGROK_AUTHTOKEN
+          valueFrom:
+            secretKeyRef:
+              name: ngrok-config
+              key: NGROK_AUTHTOKEN
+        - name: NGROK_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ngrok-config
+              key: NGROK_API_KEY
+        - name: RANCHER_HOSTNAME
+          valueFrom:
+            secretKeyRef:
+              name: ngrok-config
+              key: RANCHER_HOSTNAME
+        resources:
+          requests:
+            cpu: "4"
+            memory: "8Gi"
+    annotations:
+      testgrid-dashboards: rancher-sandbox-rancher-turtles
+      testgrid-tab-name: rancher-turtles-pr-run-e2e
