@@ -73,8 +73,8 @@ branch-protection:
 
 sinker:
   resync_period: 1m
-  max_prowjob_age: 2h
-  max_pod_age: 2h
+  max_prowjob_age: 24h
+  max_pod_age: 24h
   terminated_pod_ttl: 30m
 
 presets:

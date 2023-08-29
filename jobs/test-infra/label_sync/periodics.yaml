@@ -1,5 +1,5 @@
 periodics:
-- cron: "17 * * * *"  # Every hour at 17 minutes past the hour
+- cron: "*/30 * * * *"  # Every half hour
   name: test-infra-label-sync
   labels:
     app: label-sync
@@ -33,4 +33,4 @@ periodics:
   annotations:
     testgrid-dashboards: test-infra
     testgrid-tab-name: label_sync
-    description: Runs label_sync to synchronize GitHub repo labels with the label config defined in label_sync/labels.yaml.
+    description: Runs label_sync to synchronize GitHub repo labels with the label config defined in labels.yaml.
