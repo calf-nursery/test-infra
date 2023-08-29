@@ -1,0 +1,36 @@
+periodics:
+- cron: "17 * * * *"  # Every hour at 17 minutes past the hour
+  name: test-infra-label-sync
+  labels:
+    app: label-sync
+  decorate: true
+  extra_refs:
+  - org: calf-nursery
+    repo: test-infra
+    base_ref: main
+  spec:
+    containers:
+    - name: label-sync
+      image: gcr.io/k8s-prow/label_sync:v20230826-01e0d01366
+      command:
+      - label_sync
+      args:
+      - --config=config/prow/labels.yaml
+      - --confirm=true
+      - --orgs=calf-nursery
+      - --token=/etc/github/token
+      - --endpoint=http://ghproxy.default.svc.cluster.local
+      - --endpoint=https://api.github.com
+      - --debug
+      volumeMounts:
+      - name: github-token
+        mountPath: /etc/github
+        readOnly: true
+    volumes:
+    - name: github-token
+      secret:
+        secretName: github-oauth-bot
+  annotations:
+    testgrid-dashboards: test-infra
+    testgrid-tab-name: label_sync
+    description: Runs label_sync to synchronize GitHub repo labels with the label config defined in label_sync/labels.yaml.
