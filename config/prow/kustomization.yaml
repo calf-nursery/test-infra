@@ -26,3 +26,7 @@ configMapGenerator:
   - labels.yaml
   name: label-config
   namespace: prow
+- files:
+  - autobump-config/prow-job-autobump-config.yaml
+  name: autobump-config
+  namespace: test-pods
