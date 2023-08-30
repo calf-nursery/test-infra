@@ -1,0 +1,26 @@
+---
+gitHubLogin: "calf-nursery"
+gitHubToken: "/etc/github-token/token"
+# gitName: "Calf Nursery robot"
+# gitEmail: "k8s-infra-ci-robot@kubernetes.io"
+# onCallAddress: "https://storage.googleapis.com/kubernetes-jenkins/oncall.json"
+skipPullRequest: true
+gitHubOrg: "calf-nursery"
+gitHubRepo: "test-infra"
+remoteName: "test-infra"
+headBranchName: "prowjobs-autobump"
+upstreamURLBase: "https://raw.githubusercontent.com/calf-nursery/test-infra/main"
+includedConfigPaths:
+  - "jobs"
+targetVersion: "latest"
+prefixes:
+  - name: "k8s-testimages images"
+    prefix: "gcr.io/k8s-testimages/"
+    repo: "https://github.com/kubernetes/test-infra"
+    summarise: false
+    consistentImages: false
+  - name: "k8s-staging-test-infra images"
+    prefix: "gcr.io/k8s-staging-test-infra"
+    repo: "https://github.com/kubernetes/test-infra"
+    summarise: false
+    consistentImages: false

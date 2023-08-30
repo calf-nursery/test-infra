@@ -76,6 +76,8 @@ config_updater:
       name: plugins
     config/prow/labels.yaml:
       name: label-config
+    config/prow/autobump-config/prow-job-autobump-config.yaml:
+      name: autobump-config
     jobs/**/*.{yaml,yml}:
       name: job-config
       gzip: true
