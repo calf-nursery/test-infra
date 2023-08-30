@@ -11,14 +11,16 @@ plugins:
     - hold
     - label
     - lgtm
+    - lifecycle
+    - override
+    - release-note
+    - require-matching-label
+    - retitle
     - transfer-issue
     - trigger
     - verify-owners
     - wip
     - yuks
-    - require-matching-label
-    - release-note
-    - override
   calf-nursery/test-infra:
     plugins:
     - config-updater
