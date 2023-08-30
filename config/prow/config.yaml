@@ -9,7 +9,7 @@ log_level: debug
 
 deck:
   spyglass:
-    gcs_browser_prefix: https://console.cloud.google.com/storage/
+    gcs_browser_prefix: https://prow.calf-nursery.com/gcs/
     lenses:
     - lens:
         name: metadata
