@@ -12,7 +12,7 @@ presubmits:
     - ^main$
     spec:
       containers:
-      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230727-ea685f8747-1.27
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230824-1c1409fe24-1.27
         command:
           - make
         args:
@@ -51,7 +51,7 @@ presubmits:
     path_alias: github.com/calf-nursery/rancher-turtles
     spec:
       containers:
-      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230727-ea685f8747-1.27
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230824-1c1409fe24-1.27
         args:
           - runner.sh
           - "bash"
