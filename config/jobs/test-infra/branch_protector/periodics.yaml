@@ -18,7 +18,7 @@ periodics:
       - branchprotector
       args:
       - --config-path=config/prow/config.yaml
-      - --job-config-path=jobs
+      - --job-config-path=config/jobs
       - --github-token-path=/etc/github/token
       - --confirm
       - --github-endpoint=http://ghproxy.default.svc.cluster.local

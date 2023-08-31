@@ -11,7 +11,7 @@ remoteName: "test-infra"
 headBranchName: "prowjobs-autobump"
 upstreamURLBase: "https://raw.githubusercontent.com/calf-nursery/test-infra/main"
 includedConfigPaths:
-  - "jobs"
+  - "config/jobs"
 targetVersion: "latest"
 prefixes:
   - name: "k8s-testimages images"
