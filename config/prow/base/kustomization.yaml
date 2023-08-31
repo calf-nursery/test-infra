@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - crier.yaml
 - deck.yaml
+- gcsweb.yaml
 - ghproxy.yaml
 - hook.yaml
 - horologium.yaml

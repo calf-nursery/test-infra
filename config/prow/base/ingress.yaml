@@ -18,17 +18,24 @@ spec:
   - host: prow.calf-nursery.com
     http:
       paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
+      - backend:
           service:
             name: deck
             port:
               number: 80
-      - path: /hook
+        path: /*
         pathType: ImplementationSpecific
-        backend:
+      - backend:
           service:
             name: hook
             port:
               number: 8888
+        path: /hook
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: gcsweb
+            port:
+              name: http
+        path: "/gcs/*, /icons/*, /styles/*"
+        pathType: ImplementationSpecific

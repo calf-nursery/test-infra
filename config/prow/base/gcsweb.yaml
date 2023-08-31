@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prow
+  name: gcsweb
+  labels:
+    app: gcsweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcsweb
+  template:
+    metadata:
+      labels:
+        app: gcsweb
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: gcsweb
+        image: gcr.io/k8s-prow/gcsweb:v20230829-df0ee1785b
+        args:
+        - -b=calf-nursery-prow
+        - -p=8080
+        - -upgrade-proxied-http-to-https
+        - --gcs-credentials-file=/etc/gcs-credentials/service-account.json
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 2
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 3
+          timeoutSeconds: 2
+          failureThreshold: 2
+        volumeMounts:
+        - name: gcs-credentials
+          mountPath: /etc/gcs-credentials
+          readOnly: true
+      volumes:
+      - name: gcs-credentials
+        secret:
+          secretName: gcs-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gcsweb
+  namespace: prow
+  labels:
+    app: gcsweb
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {
+      "http":"gcsweb"
+    }}'
+    cloud.google.com/neg: '{"ingress": true}'
+spec:
+  selector:
+    app: gcsweb
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: gcsweb
+  namespace: prow
+spec:
+  healthCheck:
+    port: 8081
+    type: HTTP
+    requestPath: /healthz
