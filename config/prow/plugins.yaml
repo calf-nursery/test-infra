@@ -28,6 +28,8 @@ plugins:
 approve:
 - repos:
   - calf-nursery/testapp
+  - calf-nursery/rancher-turtles
+  - calf-nursery/test-infra
   # RequireSelfApproval requires PR authors to explicitly approve their PRs.
   # Otherwise the plugin assumes the author of the PR approves the changes in the PR.
   require_self_approval: true
@@ -38,6 +40,8 @@ approve:
 lgtm:
 - repos:
   - calf-nursery/testapp
+  - calf-nursery/rancher-turtles
+  - calf-nursery/test-infra
   store_tree_hash: true
 
 override:
@@ -62,7 +66,7 @@ external_plugins:
     - issue_comment
     - pull_request
     endpoint: http://cherrypicker
-  calf-nursery/testapp:
+  calf-nursery:
   - name: needs-rebase
     events:
     - issue_comment
