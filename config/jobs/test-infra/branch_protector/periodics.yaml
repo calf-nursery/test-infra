@@ -32,6 +32,6 @@ periodics:
       secret:
         secretName: github-oauth-bot
   annotations:
-    testgrid-dashboards: test-infra
-    testgrid-tab-name: branchprotector
+    testgrid-dashboards: calf-nursery-test-infra
+    testgrid-tab-name: test-infra-branchprotector
     description: Runs Prow's branchprotector to apply configured GitHub status context requirements and merge policies.

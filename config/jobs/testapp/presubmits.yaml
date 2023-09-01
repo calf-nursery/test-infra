@@ -23,7 +23,7 @@ presubmits:
         securityContext:
           privileged: true
     annotations:
-      testgrid-dashboards: team1
+      testgrid-dashboards: calf-nursery-testapp
       testgrid-tab-name: testapp-pr-verify-main
   - name: pull-testapp-build
     always_run: false
@@ -43,5 +43,5 @@ presubmits:
         - build
         - vet
     annotations:
-      testgrid-dashboards: team1
+      testgrid-dashboards: calf-nursery-testapp
       testgrid-tab-name: testapp-pr-build-main

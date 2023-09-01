@@ -1,0 +1,11 @@
+dashboard_groups:
+- name: calf-nursery
+  dashboard_names:
+    - calf-nursery-rancher-turtles
+    - calf-nursery-test-infra
+    - calf-nursery-testapp
+
+dashboards:
+- name: calf-nursery-rancher-turtles
+- name: calf-nursery-test-infra
+- name: calf-nursery-testapp

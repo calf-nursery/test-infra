@@ -31,10 +31,10 @@ periodics:
       secret:
         secretName: github-oauth-bot
   annotations:
-    testgrid-dashboards: test-infra
-    testgrid-tab-name: label_sync
+    testgrid-dashboards: calf-nursery-test-infra
+    testgrid-tab-name: test-infra-label-sync
     description: Runs label_sync to synchronize GitHub repo labels with the label config defined in labels.yaml.
-- name: ci-test-infra-autobump-prowjobs
+- name: test-infra-autobump-prowjobs
   cron: "06 14-23 * * 1-5"  # Run every hour at 7:06 - 16:06 PDT (in UTC) Mon-Fri
   decorate: true
   extra_refs:
@@ -63,6 +63,6 @@ periodics:
       configMap:
         name: autobump-config
   annotations:
-    testgrid-dashboards: test-infra
-    testgrid-tab-name: autobump-prowjobs
+    testgrid-dashboards: calf-nursery-test-infra
+    testgrid-tab-name: test-infra-autobump-prowjobs
     description: runs experiment/autobumper to create/update a PR that bumps prowjob images to latest published version

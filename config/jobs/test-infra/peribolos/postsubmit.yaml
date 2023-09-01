@@ -32,3 +32,6 @@ postsubmits:
         - name: github-token
           secret:
             secretName: github-oauth-bot
+      annotations:
+        testgrid-dashboards: calf-nursery-test-infra
+        testgrid-tab-name: test-infra-peribolos-post-submit

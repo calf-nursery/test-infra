@@ -18,7 +18,7 @@ presubmits:
         args:
         - verify
     annotations:
-      testgrid-dashboards: rancher-sandbox-rancher-turtles
+      testgrid-dashboards: calf-nursery-rancher-turtles
       testgrid-tab-name: rancher-turtles-pr-verify-main
   - name: pull-rancher-turtles-build
     always_run: true
@@ -36,7 +36,7 @@ presubmits:
         args:
         - build
     annotations:
-      testgrid-dashboards: rancher-sandbox-rancher-turtles
+      testgrid-dashboards: calf-nursery-rancher-turtles
       testgrid-tab-name: rancher-turtles-pr-build-main
   - name: pull-rancher-turtles-run-e2e
     labels:
@@ -81,5 +81,5 @@ presubmits:
         #     cpu: "4"
         #     memory: "8Gi"
     annotations:
-      testgrid-dashboards: rancher-sandbox-rancher-turtles
+      testgrid-dashboards: calf-nursery-rancher-turtles
       testgrid-tab-name: rancher-turtles-pr-run-e2e
