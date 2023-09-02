@@ -13,7 +13,7 @@ presubmits:
     run_if_changed: '^((scripts)/|main\.go|go\.mod|Makefile)'
     spec:
       containers:
-      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230824-1c1409fe24-1.27
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230901-e9e5d470a5-1.27
         command:
         - "runner.sh"
         - ./scripts/ci-verify.sh
