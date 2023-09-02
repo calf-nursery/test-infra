@@ -1,0 +1,44 @@
+presubmits:
+  calf-nursery/testapp:
+  - name: pull-testapp-verify-release-0-1
+    decorate: true
+ # Use workload identity for uploading artifacts
+    path_alias: github.com/calf-nursery/testapp
+    always_run: false
+    labels:
+      preset-dind-enabled: "true"
+    branches:
+    # The script this job runs is not in all branches.
+    - ^release-0.1$
+    run_if_changed: '^((scripts)/|main\.go|go\.mod|Makefile)'
+    spec:
+      containers:
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230824-1c1409fe24-1.27
+        command:
+        - "runner.sh"
+        - ./scripts/ci-verify.sh
+        securityContext:
+          privileged: true
+    annotations:
+      testgrid-dashboards: team1
+      testgrid-tab-name: testapp-pr-verify-release-0-1
+  - name: pull-testapp-build-release-0-1
+    always_run: false
+    optional: false
+    decorate: true
+    path_alias: github.com/calf-nursery/testapp
+    branches:
+    # The script this job runs is not in all branches.
+    - ^release-0.1$
+    run_if_changed: '^((scripts)/|main\.go|go\.mod|Makefile)'
+    spec:
+      containers:
+      - image: public.ecr.aws/docker/library/golang:1.20.7
+        command:
+          - make
+        args:
+        - build
+        - vet
+    annotations:
+      testgrid-dashboards: team1
+      testgrid-tab-name: testapp-pr-build-release-0-1
