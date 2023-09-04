@@ -20,7 +20,7 @@ presubmits:
     annotations:
       testgrid-dashboards: rancher-sandbox-rancher-turtles
       testgrid-tab-name: rancher-turtles-pr-verify-main
-  - name: pull-rancher-turtles-build
+  - name: pull-rancher-turtles-build-main
     always_run: true
     optional: false
     decorate: true
@@ -38,7 +38,7 @@ presubmits:
     annotations:
       testgrid-dashboards: rancher-sandbox-rancher-turtles
       testgrid-tab-name: rancher-turtles-pr-build-main
-  - name: pull-rancher-turtles-run-e2e
+  - name: pull-rancher-turtles-run-e2e-main
     labels:
       preset-dind-enabled: "true"
       preset-kind-volume-mounts: "true"
@@ -82,4 +82,4 @@ presubmits:
         #     memory: "8Gi"
     annotations:
       testgrid-dashboards: rancher-sandbox-rancher-turtles
-      testgrid-tab-name: rancher-turtles-pr-run-e2e
+      testgrid-tab-name: rancher-turtles-pr-run-e2e-main
