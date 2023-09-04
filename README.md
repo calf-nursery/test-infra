@@ -1,6 +1,6 @@
 # Prow
 
-calf-nursery Prow dashboard: https://prow.calf-nursery.com
+`calf-nursery` Prow dashboard: https://prow.calf-nursery.com
 
 ## Access Controls
 
