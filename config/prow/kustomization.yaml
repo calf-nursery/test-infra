@@ -6,6 +6,7 @@ resources:
 - external-plugins/cherrypicker_service.yaml
 - external-plugins/needs-rebase_deployment.yaml
 - external-plugins/needs-rebase_service.yaml
+- external-plugins/labels_cronjob.yaml
 
 # For some of the configmaps and secrets we could use suffix hash,
 # but some will be used directly by prow, which cannot know about
