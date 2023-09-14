@@ -21,7 +21,7 @@ orgs:
       test-infra:
         allow_merge_commit: true
         allow_rebase_merge: true
-        allow_squash_merge: false
+        allow_squash_merge: true
         description: Calf-nursery workflow & testing infrastructure
         has_projects: true
         has_wiki: false
@@ -29,7 +29,7 @@ orgs:
       testapp:
         allow_merge_commit: true
         allow_rebase_merge: true
-        allow_squash_merge: false
+        allow_squash_merge: true
         description: CA sample project
         has_projects: true
         has_wiki: true
