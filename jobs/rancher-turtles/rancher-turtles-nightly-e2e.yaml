@@ -1,4 +1,5 @@
 presubmits: # using presubmits temporarily for testing
+  calf-nursery/rancher-turtles:
   name: nightly-rancher-turtles-run-e2e-main
   labels:
     preset-dind-enabled: "true"
