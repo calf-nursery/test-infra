@@ -1,73 +1,74 @@
 presubmits: # using presubmits temporarily for testing
-  name: nightly-rancher-turtles-run-e2e-main
-  labels:
-    preset-dind-enabled: "true"
-    preset-kind-volume-mounts: "true"
-  decorate: true
-  optional: false
-  always_run: true
-  branches:
-  - ^main$
-  path_alias: github.com/calf-nursery/rancher-turtles
-  spec:
-    containers:
-    - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20231031-660609d482-1.27
-    - command:
-      - runner.sh
-      - ./scripts/ci-e2e.sh
-      env:
-      - name: NGROK_AUTHTOKEN
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: NGROK_AUTHTOKEN
-      - name: NGROK_API_KEY
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: NGROK_API_KEY
-      - name: RANCHER_HOSTNAME
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: RANCHER_HOSTNAME
-      - name: RANCHER_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: RANCHER_PASSWORD
-      - name: AZURE_SUBSCRIPTION_ID
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: AZURE_SUBSCRIPTION_ID
-      - name: AZURE_TENANT_ID
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: AZURE_TENANT_ID
-      - name: AZURE_CLIENT_ID
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: AZURE_CLIENT_ID
-      - name: AZURE_CLIENT_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: AZURE_CLIENT_SECRET
-      - name: CAPA_ENCODED_CREDS
-        valueFrom:
-          secretKeyRef:
-            name: rancher-turtles-e2e-config
-            key: CAPA_ENCODED_CREDS
-      # we need privileged mode in order to do docker in docker
-      securityContext:
-        privileged: true
-      # resources:
-      #   requests:
-      #     cpu: "4"
-      #     memory: "8Gi"
-  annotations:
-    testgrid-dashboards: rancher-sandbox-rancher-turtles
-    testgrid-tab-name: rancher-turtles-nightly-run-e2e-main
+  calf-nursery/rancher-turtles:
+  - name: nightly-rancher-turtles-run-e2e-main
+    labels:
+      preset-dind-enabled: "true"
+      preset-kind-volume-mounts: "true"
+    decorate: true
+    optional: false
+    always_run: true
+    branches:
+    - ^main$
+    path_alias: github.com/calf-nursery/rancher-turtles
+    spec:
+      containers:
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20231031-660609d482-1.27
+      - command:
+        - runner.sh
+        - ./scripts/ci-e2e.sh
+        env:
+        - name: NGROK_AUTHTOKEN
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: NGROK_AUTHTOKEN
+        - name: NGROK_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: NGROK_API_KEY
+        - name: RANCHER_HOSTNAME
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: RANCHER_HOSTNAME
+        - name: RANCHER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: RANCHER_PASSWORD
+        - name: AZURE_SUBSCRIPTION_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_SUBSCRIPTION_ID
+        - name: AZURE_TENANT_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_TENANT_ID
+        - name: AZURE_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_CLIENT_ID
+        - name: AZURE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_CLIENT_SECRET
+        - name: CAPA_ENCODED_CREDS
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: CAPA_ENCODED_CREDS
+        # we need privileged mode in order to do docker in docker
+        securityContext:
+          privileged: true
+        # resources:
+        #   requests:
+        #     cpu: "4"
+        #     memory: "8Gi"
+    annotations:
+      testgrid-dashboards: rancher-sandbox-rancher-turtles
+      testgrid-tab-name: rancher-turtles-nightly-run-e2e-main
