@@ -83,3 +83,42 @@ presubmits:
     annotations:
       testgrid-dashboards: rancher-sandbox-rancher-turtles
       testgrid-tab-name: rancher-turtles-pr-run-e2e-main
+  - name: nightly-rancher-turtles-run-e2e-main
+    labels:
+      preset-dind-enabled: "true"
+      preset-kind-volume-mounts: "true"
+    decorate: true
+    optional: false
+    always_run: true
+    branches:
+    - ^main$
+    path_alias: github.com/calf-nursery/rancher-turtles
+    spec:
+      containers:
+      - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230824-1c1409fe24-1.27
+        args:
+          - runner.sh
+          - "bash"
+          - "-c"
+          - "export VERIFY_CHECKSUM=false && make test-e2e"
+        securityContext:
+          privileged: true
+        env:
+        - name: NGROK_AUTHTOKEN
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: NGROK_AUTHTOKEN
+        - name: NGROK_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: NGROK_API_KEY
+        - name: RANCHER_HOSTNAME
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: RANCHER_HOSTNAME
+    annotations:
+      testgrid-dashboards: rancher-sandbox-rancher-turtles
+      testgrid-tab-name: rancher-turtles-nightly-run-e2e-main
