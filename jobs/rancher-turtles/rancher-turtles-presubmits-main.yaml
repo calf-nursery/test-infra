@@ -119,6 +119,36 @@ presubmits:
             secretKeyRef:
               name: rancher-turtles-e2e-config
               key: RANCHER_HOSTNAME
+        - name: RANCHER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: RANCHER_PASSWORD
+        - name: AZURE_SUBSCRIPTION_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_SUBSCRIPTION_ID
+        - name: AZURE_TENANT_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_TENANT_ID
+        - name: AZURE_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_CLIENT_ID
+        - name: AZURE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_CLIENT_SECRET
+        - name: CAPA_ENCODED_CREDS
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: CAPA_ENCODED_CREDS
     annotations:
       testgrid-dashboards: rancher-sandbox-rancher-turtles
       testgrid-tab-name: rancher-turtles-nightly-run-e2e-main
