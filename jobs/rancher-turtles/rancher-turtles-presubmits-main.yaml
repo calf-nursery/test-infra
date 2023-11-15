@@ -98,9 +98,7 @@ presubmits:
       - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230824-1c1409fe24-1.27
         args:
           - runner.sh
-          - "bash"
-          - "-c"
-          - "export VERIFY_CHECKSUM=false && make test-e2e"
+          - ./scripts/ci-e2e.sh
         securityContext:
           privileged: true
         env:
@@ -124,6 +122,26 @@ presubmits:
             secretKeyRef:
               name: rancher-turtles-e2e-config
               key: RANCHER_PASSWORD
+        - name: AZURE_SUBSCRIPTION_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_SUBSCRIPTION_ID
+        - name: AZURE_TENANT_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_TENANT_ID
+        - name: AZURE_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_CLIENT_ID
+        - name: AZURE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: rancher-turtles-e2e-config
+              key: AZURE_CLIENT_SECRET
         - name: CAPA_ENCODED_CREDS
           valueFrom:
             secretKeyRef:
