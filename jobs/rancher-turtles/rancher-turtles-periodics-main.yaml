@@ -1,0 +1,69 @@
+periodics:
+- cron: "0 */2 * * *" # Every two hours
+  name: periodic-rancher-turtles-run-e2e-main
+  labels:
+    preset-dind-enabled: "true"
+    preset-kind-volume-mounts: "true"
+  decorate: true
+  optional: false
+  always_run: true
+  branches:
+  - ^main$
+  path_alias: github.com/calf-nursery/rancher-turtles
+  spec:
+    containers:
+    - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230824-1c1409fe24-1.27
+      args:
+        - runner.sh
+        - ./scripts/ci-e2e.sh
+      securityContext:
+        privileged: true
+      env:
+      - name: NGROK_AUTHTOKEN
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: NGROK_AUTHTOKEN
+      - name: NGROK_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: NGROK_API_KEY
+      - name: RANCHER_HOSTNAME
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: RANCHER_HOSTNAME
+      - name: RANCHER_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: RANCHER_PASSWORD
+      - name: AZURE_SUBSCRIPTION_ID
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: AZURE_SUBSCRIPTION_ID
+      - name: AZURE_TENANT_ID
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: AZURE_TENANT_ID
+      - name: AZURE_CLIENT_ID
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: AZURE_CLIENT_ID
+      - name: AZURE_CLIENT_SECRET
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: AZURE_CLIENT_SECRET
+      - name: CAPA_ENCODED_CREDS
+        valueFrom:
+          secretKeyRef:
+            name: rancher-turtles-e2e-config
+            key: CAPA_ENCODED_CREDS
+  annotations:
+    testgrid-dashboards: rancher-sandbox-rancher-turtles
+    testgrid-tab-name: rancher-turtles-nightly-run-e2e-main
