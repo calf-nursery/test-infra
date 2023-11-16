@@ -1,15 +1,15 @@
 periodics:
-- cron: "0 */2 * * *" # Every two hours
-  name: periodic-rancher-turtles-run-e2e-main
+- name: periodic-rancher-turtles-run-e2e-main
+  #cron: "0 0 * * *" # Every day at midnight
+  interval: 2h # Every two hours for testing
   labels:
     preset-dind-enabled: "true"
     preset-kind-volume-mounts: "true"
   decorate: true
-  optional: false
-  always_run: true
-  branches:
-  - ^main$
-  path_alias: github.com/calf-nursery/rancher-turtles
+  extra_refs:
+  - org: calf-nursery
+    repo: rancher-turtles
+    base_ref: main
   spec:
     containers:
     - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20230824-1c1409fe24-1.27
@@ -67,3 +67,4 @@ periodics:
   annotations:
     testgrid-dashboards: rancher-sandbox-rancher-turtles
     testgrid-tab-name: rancher-turtles-nightly-run-e2e-main
+    description: Runs E2E tests periodically from rancher-turtles/main
