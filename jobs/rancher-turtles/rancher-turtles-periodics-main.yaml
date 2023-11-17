@@ -1,7 +1,7 @@
 periodics:
 - name: periodic-rancher-turtles-run-e2e-main
   #cron: "0 0 * * *" # Every day at midnight
-  interval: 2h # Every two hours for testing
+  interval: 12h # Every twelve hours for testing
   labels:
     preset-dind-enabled: "true"
     preset-kind-volume-mounts: "true"
