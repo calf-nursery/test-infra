@@ -1,5 +1,5 @@
 periodics:
-- cron: "*/10 * * * *"  # Every 10 minutes
+- cron: "0 0 * * *"  #"*/10 * * * *"  # Every 10 minutes
   name: test-infra-branchprotector
   labels:
     app: branchprotector

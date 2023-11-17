@@ -1,5 +1,5 @@
 periodics:
-- cron: "*/30 * * * *"  # Every half hour
+- cron: "0 0 * * *"  # "*/30 * * * *"  # Every half hour
   name: test-infra-label-sync
   labels:
     app: label-sync
