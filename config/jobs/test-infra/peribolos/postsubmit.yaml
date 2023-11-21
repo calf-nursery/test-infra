@@ -1,0 +1,37 @@
+postsubmits:
+  calf-nursery/test-infra:
+    - name: peribolos-post-submit
+      branches:
+        - ^main$
+      decorate: true
+      max_concurrency: 1
+      skip_report: false
+      run_if_changed: '^config/prow/org.yaml$|^config/jobs/test-infra/peribolos/.*'
+      spec:
+        containers:
+          - image: gcr.io/k8s-prow/peribolos:v20230315-6d54c174f4
+            command:
+              - peribolos
+            args:
+              - --config-path=config/prow/org.yaml
+              - --github-token-path=/etc/github/token
+              - --fix-org
+              - --fix-org-members
+              - --fix-repos
+              - --fix-teams
+              - --fix-team-members
+              - --fix-team-repos
+              - --min-admins=2
+              - --maximum-removal-delta=0.25
+              - --confirm
+            volumeMounts:
+            - name: github-token
+              mountPath: /etc/github
+              readOnly: true
+        volumes:
+        - name: github-token
+          secret:
+            secretName: github-oauth-bot
+      annotations:
+        testgrid-dashboards: calf-nursery-test-infra
+        testgrid-tab-name: test-infra-peribolos-post-submit

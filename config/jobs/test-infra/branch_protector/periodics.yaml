@@ -1,0 +1,37 @@
+periodics:
+- cron: "*/10 * * * *"  # Every 10 minutes
+  name: test-infra-branchprotector
+  labels:
+    app: branchprotector
+  decorate: true
+  decoration_config:
+    timeout: 5h
+  extra_refs:
+  - org: calf-nursery
+    repo: test-infra
+    base_ref: main
+  spec:
+    containers:
+    - name: branchprotector
+      image: gcr.io/k8s-prow/branchprotector:v20230826-01e0d01366
+      command:
+      - branchprotector
+      args:
+      - --config-path=config/prow/config.yaml
+      - --job-config-path=config/jobs
+      - --github-token-path=/etc/github/token
+      - --confirm
+      - --github-endpoint=http://ghproxy.default.svc.cluster.local
+      - --github-endpoint=https://api.github.com
+      volumeMounts:
+      - name: github-token
+        mountPath: /etc/github
+        readOnly: true
+    volumes:
+    - name: github-token
+      secret:
+        secretName: github-oauth-bot
+  annotations:
+    testgrid-dashboards: calf-nursery-test-infra
+    testgrid-tab-name: test-infra-branchprotector
+    description: Runs Prow's branchprotector to apply configured GitHub status context requirements and merge policies.
